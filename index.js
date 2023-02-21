@@ -21,7 +21,9 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(layout);
 
+import cuorses from "./src/router/curses.router/courses.router.js";
 app.use('/', router);
+app.use(cuorses)
 
 
 app.listen(8080, () => console.log('server is runnning Port:8080'));
