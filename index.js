@@ -1,27 +1,19 @@
 import express from 'express';
-import mongoose from 'mongoose';
-import session from 'express-session';
 import layout from 'express-ejs-layouts';
-mongoose.set('strictQuery', false)
-mongoose.connect('mongodb://localhost/it-center', {useNewUrlParser: true, useUnifiedTopology: true});
+import router from './src/router/home.router.js';
+import db from './src/config/db.config.js';
 const app = express();
 
+db();
+
 app.set('view engine', 'ejs');
+app.set('views', "./src/views")
 app.use(express.urlencoded({extended: true}));
 app.use(express.static("public")); 
 app.use(express.json());
 app.use(layout);
 
-app.use(session({
-    secret: "School",
-    cookie: {maxAge: 1000 * 60 * 60 * 24},
-    resave: false,
-    saveUninitialized: false
-}));
-app.use((req, res, next) => {
-    res.locals.user = req.session.user || "";
-    next();
-})
+app.use('/', router);
 
 
 app.listen(8080, () => console.log('server is runnning Port:8080'));
