@@ -1,1 +1,1 @@
-console.log("it-centre")
+console.log("it-center")
