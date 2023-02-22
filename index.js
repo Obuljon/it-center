@@ -1,8 +1,7 @@
 import express from 'express';
 import layout from 'express-ejs-layouts';
-
 import db from './src/config/db.config.js';
-import router from './src/router/home.router.js';
+
 
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
@@ -20,10 +19,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static("public")); 
 app.use(express.json());
 app.use(layout);
-
-import cuorses from "./src/router/curses.router/courses.router.js";
-app.use('/', router);
-app.use(cuorses)
+import mainrouter from "./src/router/main.router.js";
+app.use(mainrouter);
 
 
 app.listen(8080, () => console.log('server is runnning Port:8080'));
