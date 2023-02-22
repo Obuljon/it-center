@@ -3,6 +3,7 @@ import layout from 'express-ejs-layouts';
 
 import db from './src/config/db.config.js';
 import router from './src/router/home.router.js';
+import ContactRouter from './src/router/contact_router/contact.router.js';
 
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
@@ -21,8 +22,8 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(layout);
 
-app.use('/', router);
-
+app.use(router);
+app.use(ContactRouter);
 
 app.listen(8080, () => console.log('server is runnning Port:8080'));
 
